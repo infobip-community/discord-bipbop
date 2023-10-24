@@ -1,0 +1,35 @@
+{
+  "name": "discord-bipbop",
+  "version": "0.0.1",
+  "description": "Discord Bot to help manage the Infobip Discord",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:dev": "npx nodemon",
+    "start": "npm run build && node ./dist/index.js",
+    "start:blogs": "node ./dist/post_blog.js",
+    "build": "rimraf ./dist && tsc",
+    "prettier": "prettier . --write"
+  },
+  "keywords": [
+    "Discord",
+    "Infobip",
+    "Bot"
+  ],
+  "author": "Mike Elsmore <mike.elsmore@infobip.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/sensible": "^5.5.0",
+    "dayjs": "^1.11.10",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.2",
+    "string-strip-html": "^8.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
