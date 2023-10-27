@@ -9,18 +9,21 @@ const fastify = Fastify({
 
 export const start = async () => {
   try {
+    const timeWindow = Number(process.env.BLOG_DELAY_HOUR || 1);
     const timeBefore = dayjs()
-      .add(-1, "hour")
+      .add(-1 * timeWindow, "hour")
       .minute(0)
       .second(0)
       .millisecond(0)
-      .toISOString();
+      .toISOString()
+      .split(".")[0];
     const timeAfter = dayjs()
-      .add(-2, "hour")
+      .add(-1 * timeWindow - 1, "hour")
       .minute(0)
       .second(0)
       .millisecond(0)
-      .toISOString();
+      .toISOString()
+      .split(".")[0];
     const wordpressUrl = `${process.env.INFOBIP_WP_URL}/wp-json/wp/v2/posts?_fields=id,author,excerpt,title,featured_media,link,categories,_links,_embedded&_embed&after=${timeAfter}&before=${timeBefore}`;
     const rssResponse = await fetch(wordpressUrl, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
